@@ -1,1 +1,39 @@
-<?xml version="1.0" ?><list usertype="Integer"><nodes><node>[741, 451, 231, 857, 837, 433]</node><node>[551, 618, 228]</node><node>[511, 211]</node><node>[769]</node></nodes></list>
+<realization.list.ListOfArrays>
+  <head>
+    <data>
+      <IntegerType value="86"/>
+      <IntegerType value="26"/>
+      <IntegerType value="576"/>
+      <IntegerType value="176"/>
+      <IntegerType value="231"/>
+      <IntegerType value="296"/>
+    </data>
+    <next>
+      <data>
+        <IntegerType value="27"/>
+        <IntegerType value="443"/>
+        <IntegerType value="136"/>
+      </data>
+      <next>
+        <data>
+          <IntegerType value="208"/>
+          <IntegerType value="936"/>
+        </data>
+        <next>
+          <data>
+            <IntegerType value="260"/>
+          </data>
+          <prev reference="../.."/>
+          <outer-class reference="../../../../.."/>
+        </next>
+        <prev reference="../.."/>
+        <outer-class reference="../../../.."/>
+      </next>
+      <prev reference="../.."/>
+      <outer-class reference="../../.."/>
+    </next>
+    <outer-class reference="../.."/>
+  </head>
+  <tail reference="../head/next/next/next"/>
+  <size>4</size>
+</realization.list.ListOfArrays>

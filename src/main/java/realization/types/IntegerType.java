@@ -1,5 +1,7 @@
 package realization.types;
 
+import com.thoughtworks.xstream.XStream;
+
 public class IntegerType {
 
     private int value;
@@ -19,5 +21,10 @@ public class IntegerType {
     @Override
     public String toString() {
         return String.valueOf(value);
+    }
+
+    public static void setXMLParser(XStream xStream) {
+        xStream.alias("IntegerType", IntegerType.class);
+        xStream.useAttributeFor(IntegerType.class, "value");
     }
 }

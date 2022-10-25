@@ -1,6 +1,9 @@
 package realization.list;
 
 
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.StaxDriver;
+import org.xml.sax.InputSource;
 import realization.types.IntegerType;
 import realization.types.factory.FactoryUserType;
 import realization.types.userTypes.UserType;
@@ -8,92 +11,34 @@ import realization.types.userTypes.UserType;
 import javax.xml.XMLConstants;
 import javax.xml.stream.*;
 import javax.xml.stream.events.XMLEvent;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.stream.StreamResult;
+import java.io.*;
 import java.util.ArrayList;
 
 public class SerializeList extends ListOfArrays{
 
-    public static void save(ListOfArrays list, String filename, UserType userType) {
-        XMLOutputFactory factory = XMLOutputFactory.newInstance();
-        XMLStreamWriter writer = null;
+    public static void save(ListOfArrays list, String filename, UserType userType) throws IOException {
 
-        try (FileWriter fileWriter = new FileWriter(filename)) {
-            writer = factory.createXMLStreamWriter(fileWriter);
+        OutputStreamWriter streamWriter = new OutputStreamWriter(new FileOutputStream(filename),
+                "utf-8");
 
-            writer.writeStartDocument();
-
-            writer.writeStartElement("list");
-            writer.writeAttribute("usertype", userType.typeName());
-
-            writer.writeStartElement("nodes");
-
-            Node tmp = list.getHead();
-
-            while (tmp != null) {
-                writer.writeStartElement("node");
-                writer.writeCharacters(tmp.toString());
-                writer.writeEndElement();
-
-                tmp = tmp.next;
-            }
-
-            writer.writeEndElement();
-            writer.writeEndDocument();
+        XStream xStream = new XStream();
+        IntegerType.setXMLParser(xStream);
+        xStream.toXML(list, streamWriter);
+        streamWriter.write("\n");
+        streamWriter.flush();
+        streamWriter.close();
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (XMLStreamException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     public static ListOfArrays load(String filename) throws FileNotFoundException, XMLStreamException {
-        FactoryUserType factoryUserType = new FactoryUserType();
-        UserType userType = null;
-
-        ListOfArrays loadList = new ListOfArrays();
-
-        XMLInputFactory xmlInputFactory = XMLInputFactory.newFactory();
-        xmlInputFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_DTD, "");
-        xmlInputFactory.setProperty(XMLConstants.ACCESS_EXTERNAL_SCHEMA, "");
-
-        XMLStreamReader reader = xmlInputFactory.createXMLStreamReader(new FileInputStream(filename));
-
-        int eventType = reader.getEventType();
-        String type = "";
-        while (reader.hasNext()) {
-            eventType = reader.next();
-
-            if(eventType == XMLEvent.START_ELEMENT) {
-                switch (reader.getName().getLocalPart()) {
-                    case "list":
-                        type = reader.getAttributeValue(null, "usertype");
-                        userType =  factoryUserType.getBuilderByTypeName(type);
-                        break;
-                    case "node":
-                        eventType = reader.next();
-                        if (eventType == XMLEvent.CHARACTERS) {
-                            String str = reader.getText();
-                            if(type == "Integer") {
-                                ArrayList<IntegerType> newArray = new ArrayList<>();
-                                parseStringFromXML(newArray, str);
-                            }
-                            else if (type == "Point2D") {
-
-                            }
-                            ArrayList<IntegerType> newArray = new ArrayList<>();
-                            parseStringFromXML(newArray, str);
-
-                        }
-                        break;
-                }
-            }
-        }
-        return loadList;
+        return null;
     }
 
     private static ArrayList parseStringFromXML(ArrayList list, String s) {
@@ -107,4 +52,27 @@ public class SerializeList extends ListOfArrays{
         }
         return list;
     }
+
+
+    public static String formatXml(String xml) {
+
+        try {
+            Transformer serializer = SAXTransformerFactory.newInstance().newTransformer();
+
+            serializer.setOutputProperty(OutputKeys.INDENT, "yes");
+            serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+
+            Source xmlSource = new SAXSource(new InputSource(
+                    new ByteArrayInputStream(xml.getBytes())));
+            StreamResult res =  new StreamResult(new ByteArrayOutputStream());
+
+            serializer.transform(xmlSource, res);
+
+            return new String(((ByteArrayOutputStream)res.getOutputStream()).toByteArray());
+
+        } catch(Exception e) {
+            return xml;
+        }
+    }
+
 }
