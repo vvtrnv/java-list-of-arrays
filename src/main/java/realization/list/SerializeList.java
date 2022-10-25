@@ -8,11 +8,11 @@ import realization.types.userTypes.UserType;
 import javax.xml.XMLConstants;
 import javax.xml.stream.*;
 import javax.xml.stream.events.XMLEvent;
-import java.io.*;
-import java.lang.reflect.Array;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class SerializeList extends ListOfArrays{
 
