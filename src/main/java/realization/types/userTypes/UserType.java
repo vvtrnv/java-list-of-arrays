@@ -47,4 +47,5 @@ public interface UserType{
      */
     public Comporator getTypeComparator();
 
+    public String toString(Object object);
 }

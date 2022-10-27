@@ -5,9 +5,7 @@ import realization.types.userTypes.IntegerUserType;
 import realization.types.userTypes.UserType;
 
 import javax.xml.stream.XMLStreamException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class Main {
@@ -46,7 +44,7 @@ public class Main {
         System.out.println(arr.toString());
         System.out.println("AFTER");
 
-        SerializeList.save(arr, "integer.xml", usertype);
-        SerializeList.load("integer.xml");
+        SerializeList.saveToFile(arr, "integer.dat", usertype);
+        SerializeList.loadFromFile("integer.dat", usertype);
     }
 }

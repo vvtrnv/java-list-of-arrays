@@ -1,39 +1,22 @@
-<realization.list.ListOfArrays>
-  <head>
-    <data>
-      <IntegerType value="86"/>
-      <IntegerType value="26"/>
-      <IntegerType value="576"/>
-      <IntegerType value="176"/>
-      <IntegerType value="231"/>
-      <IntegerType value="296"/>
-    </data>
-    <next>
-      <data>
-        <IntegerType value="27"/>
-        <IntegerType value="443"/>
-        <IntegerType value="136"/>
-      </data>
-      <next>
-        <data>
-          <IntegerType value="208"/>
-          <IntegerType value="936"/>
-        </data>
-        <next>
-          <data>
-            <IntegerType value="260"/>
-          </data>
-          <prev reference="../.."/>
-          <outer-class reference="../../../../.."/>
-        </next>
-        <prev reference="../.."/>
-        <outer-class reference="../../../.."/>
-      </next>
-      <prev reference="../.."/>
-      <outer-class reference="../../.."/>
-    </next>
-    <outer-class reference="../.."/>
-  </head>
-  <tail reference="../head/next/next/next"/>
-  <size>4</size>
-</realization.list.ListOfArrays>
+<list>
+  <list>
+    <IntegerType value="365"/>
+    <IntegerType value="830"/>
+    <IntegerType value="394"/>
+    <IntegerType value="809"/>
+    <IntegerType value="659"/>
+    <IntegerType value="479"/>
+  </list>
+  <list>
+    <IntegerType value="8"/>
+    <IntegerType value="411"/>
+    <IntegerType value="705"/>
+  </list>
+  <list>
+    <IntegerType value="884"/>
+    <IntegerType value="53"/>
+  </list>
+  <list>
+    <IntegerType value="803"/>
+  </list>
+</list>

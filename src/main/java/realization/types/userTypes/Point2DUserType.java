@@ -55,4 +55,8 @@ public class Point2DUserType implements UserType {
         return new Point2DComporator();
     }
 
+    @Override
+    public String toString(Object object) {
+        return object.toString();
+    }
 }

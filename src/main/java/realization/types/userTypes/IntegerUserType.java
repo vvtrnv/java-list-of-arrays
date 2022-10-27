@@ -39,4 +39,9 @@ public class IntegerUserType implements UserType {
     public Comporator getTypeComparator() {
         return new IntegerComporator();
     }
+
+    @Override
+    public String toString(Object object) {
+        return object.toString();
+    }
 }
