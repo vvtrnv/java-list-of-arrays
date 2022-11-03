@@ -39,9 +39,6 @@ public class ListOfArrays {
      * @param element элемент для добавления в массив
      */
     public void push_back_byIndexNode(int indexNode, Object element) {
-//        Object[] newArray = Arrays.copyOf(tmp.data, tmp.data.length + 1);
-//        newArray[newArray.length - 1] = element;
-//        tmp.data = newArray;
 
         Node tmp = getNode(indexNode);
         tmp.data.add(element);

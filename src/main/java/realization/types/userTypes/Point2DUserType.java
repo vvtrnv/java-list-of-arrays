@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 public class Point2DUserType implements UserType {
 
-    private static final String REG_EXPR = "\\(([0-9]+(?:[.,][0-9]+){0,1});([0-9]+(?:[.,][0-9]+){0,1})\\)";
+    private static final String REG_EXPR = "\\(([-]?[0-9]+(?:[.,][0-9]+){0,1});([-]?[0-9]+(?:[.,][0-9]+){0,1})\\)";
 
     @Override
     public String typeName() {
@@ -43,8 +43,8 @@ public class Point2DUserType implements UserType {
         Matcher matcher = ptrnString.matcher(ss);
 
         if(matcher.find()) {
-            return new Point2DType(Integer.valueOf(matcher.group(1)),
-                    Integer.valueOf(matcher.group(2)));
+            return new Point2DType(Float.valueOf(matcher.group(1)),
+                    Float.valueOf(matcher.group(2)));
         }
 
         return null;
