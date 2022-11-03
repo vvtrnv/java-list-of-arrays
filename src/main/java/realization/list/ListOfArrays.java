@@ -39,9 +39,12 @@ public class ListOfArrays {
      * @param element элемент для добавления в массив
      */
     public void push_back_byIndexNode(int indexNode, Object element) {
-
-        Node tmp = getNode(indexNode);
-        tmp.data.add(element);
+        try {
+            Node tmp = getNode(indexNode);
+            tmp.data.add(element);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -50,21 +53,25 @@ public class ListOfArrays {
      * @param data данные для вставки
      */
     public void insert(int index, ArrayList data) {
-        Node tmp = getNode(index);
-        Node newElement = new Node(data);
+        try {
+            Node tmp = getNode(index);
+            Node newElement = new Node(data);
 
-        if (tmp == head) {
-            newElement.next = head;
-            head.prev = newElement;
-            head = newElement;
-        } else {
-            tmp.prev.next = newElement;
-            newElement.prev = tmp.prev;
-            newElement.next = tmp;
-            tmp.prev = newElement;
+            if (tmp == head) {
+                newElement.next = head;
+                head.prev = newElement;
+                head = newElement;
+            } else {
+                tmp.prev.next = newElement;
+                newElement.prev = tmp.prev;
+                newElement.next = tmp;
+                tmp.prev = newElement;
+            }
+
+            this.size++;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
         }
-
-        this.size++;
     }
 
     /**
@@ -74,8 +81,12 @@ public class ListOfArrays {
      * @param element элемент для вставки в массив
      */
     public void insert_byIndexNode(int indexNode, int indexOnArray, Object element) {
-        Node tmp = getNode(indexNode);
-        tmp.data.add(indexOnArray, element);
+        try {
+            Node tmp = getNode(indexNode);
+            tmp.data.add(indexOnArray, element);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -84,7 +95,12 @@ public class ListOfArrays {
      * @return
      */
     public ArrayList<Object> get(int index) {
-        return getNode(index).data;
+        try {
+            return getNode(index).data;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -92,26 +108,32 @@ public class ListOfArrays {
      * @param index порядковый номер узла в списке
      */
     public void remove(int index) {
-        Node tmp = getNode(index);
+        try {
+            Node tmp = getNode(index);
 
-        if (tmp == head && head == tail) {
-            head = tail = null;
+            if (tmp == head && head == tail) {
+                head = tail = null;
+                tmp.next = tmp.prev = null;
+                this.size--;
+                return;
+            } else if (tmp == head && head.next != null) {
+                head = head.next;
+                head.prev = null;
+            } else if (tmp == tail) {
+                tail = tail.prev;
+                tail.next = null;
+            }
+            else {
+                tmp.prev.next = tmp.next;
+                tmp.next.prev = tmp.prev;
+            }
+
             tmp.next = tmp.prev = null;
-            return;
-        } else if (tmp == head && head.next != null) {
-            head = head.next;
-            head.prev = null;
-        } else if (tmp == tail) {
-            tail = tail.prev;
-            tail.next = null;
-        }
-        else {
-            tmp.prev.next = tmp.next;
-            tmp.next.prev = tmp.prev;
+            this.size--;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
         }
 
-        tmp.next = tmp.prev = null;
-        this.size--;
     }
 
     /**
@@ -129,6 +151,7 @@ public class ListOfArrays {
 
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("Error. Out of bounds array.");
+            return;
         }
     }
 
@@ -240,8 +263,12 @@ public class ListOfArrays {
      * @param comporator
      */
     public void sortArray(int index, Comporator comporator) {
-        Node tmp = getNode(index);
-        tmp.sortArray(comporator);
+        try {
+            Node tmp = getNode(index);
+            tmp.sortArray(comporator);
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 
@@ -264,9 +291,8 @@ public class ListOfArrays {
             return tmp;
         } catch (IndexOutOfBoundsException ex) {
             System.out.println("Error. Out of bounds list. The size of list = " + this.size);
+            throw new IndexOutOfBoundsException("Error. Out of bounds list.");
         }
-
-        return null;
     }
 
 

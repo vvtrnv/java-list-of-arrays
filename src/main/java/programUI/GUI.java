@@ -249,7 +249,7 @@ public class GUI extends JPanel {
         setTextOnMainField();
     }
 
-    private void removeNodeByID() { // #TODO когда только один элемент в списке, не удаляется и выбрасывает исключение
+    private void removeNodeByID() {
         String nodeID = removeByIdField.getText();
         if (nodeID.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ошибка. Поле \"id\" пусто!");
