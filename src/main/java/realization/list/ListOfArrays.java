@@ -8,9 +8,20 @@ import java.util.ArrayList;
 
 public class ListOfArrays {
 
-    protected Node head;
-    protected Node tail;
-    protected int size;
+    private Node head;
+    private Node tail;
+    private int size;
+
+    public ListOfArrays() {
+        this.size = 0;
+        this.head = this.tail = null;
+    }
+
+    public ListOfArrays(ArrayList data) {
+        this.size = 0;
+        this.head = this.tail = null;
+        push_back(data);
+    }
 
     /**
      * Вставка массива ссылок в конец списка.
@@ -145,13 +156,12 @@ public class ListOfArrays {
         try {
             Node tmp = getNode(indexNode);
             if ( indexOnArray < 0 || indexOnArray >= tmp.data.size()) {
-                throw new IndexOutOfBoundsException();
+                throw new IndexOutOfBoundsException("Error. Out of bounds array.");
             }
             tmp.data.remove(indexOnArray);
 
         } catch (IndexOutOfBoundsException ex) {
-            System.out.println("Error. Out of bounds array.");
-            return;
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -324,14 +334,8 @@ public class ListOfArrays {
         this.head = this.tail = null;
     }
 
-    protected Node getHead() {
-        return this.head;
-    }
-    protected Node getTail() {
-        return this.tail;
-    }
 
-    protected class Node implements Serializable {
+    private class Node implements Serializable {
 
         ArrayList<Object> data;
         Node next;
