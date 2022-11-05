@@ -15,7 +15,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.util.ArrayList;
 
-public class SerializeList extends ListOfArrays{
+public class SerializeList {
 
     private static ArrayList parseString(ArrayList list, String s, UserType userType) {
         s = s.replace("[", "");

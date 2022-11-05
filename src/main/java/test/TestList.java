@@ -91,8 +91,6 @@ public class TestList {
     }
 
     private void testProgram(String filename) {
-
-
         printList();
         saveList(filename);
 
