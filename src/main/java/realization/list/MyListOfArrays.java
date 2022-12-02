@@ -60,6 +60,22 @@ public class MyListOfArrays {
         this.totalElements++;
     }
 
+    public Object get(int logicalIndexOfElement) {
+        try {
+            int[] physicalIndex = getIndex(logicalIndexOfElement);
+            if (physicalIndex[0] == -1 || physicalIndex[1] == -1) {
+                throw new IndexOutOfBoundsException("Error. Index out of bounds");
+            }
+
+            Node current = getNode(physicalIndex[0]);
+
+            return current.array[physicalIndex[1]];
+        } catch (IndexOutOfBoundsException error) {
+            System.out.println(error.getMessage());
+        }
+        return null;
+    }
+
     /**
      * Преобразование логического номера в физический
      * @param logicalIndexOfElement

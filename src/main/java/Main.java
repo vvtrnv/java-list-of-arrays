@@ -21,11 +21,10 @@ public class Main {
         }
         System.out.println("TEST = " + list.getTotalElements());
         list.show();
-        list.remove(2);
+        System.out.println(list.get(3));
+        list.insert(1000, 3);
         System.out.println("TEST = " + list.getTotalElements());
         list.show();
-        list.remove(2);
-        System.out.println("TEST = " + list.getTotalElements());
-        list.show();
+        System.out.println(list.get(3));
     }
 }
