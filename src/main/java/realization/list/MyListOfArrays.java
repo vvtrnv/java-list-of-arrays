@@ -33,15 +33,15 @@ public class MyListOfArrays {
         Node current = this.tail;
         current.addElementOnArray(value);
 
-        if (current.getCountOfElementsInArray() == current.getSizeArr()) {
-            int kk1 = current.getSizeArr() * 3/4; // 75% в старом
-            int kk2 = current.getSizeArr() - kk1; // 25% в новом
+        if (current.getCountOfElementsInArray() == this.sizeOfArrays ) {
+            int kk1 = this.sizeOfArrays  * 3/4; // 75% в старом
+            int kk2 = this.sizeOfArrays  - kk1; // 25% в новом
 
             // Новое количество элементов в старом массиве
             current.setCountOfElementsInArray(kk1);
 
             // Создаём новый узел и ставим ему количество элементов в массиве
-            Node newNode = new Node(current.getSizeArr());
+            Node newNode = new Node(this.sizeOfArrays );
             current.next = newNode;
             newNode.prev = current;
             this.tail = newNode;
@@ -140,8 +140,8 @@ public class MyListOfArrays {
             this.totalElements++;
 
             // В случае переполнения -> раздвижка списка
-            if (current.getCountOfElementsInArray() == current.getSizeArr()) {
-                Node newNode = new Node(current.getSizeArr());
+            if (current.getCountOfElementsInArray() == this.sizeOfArrays ) {
+                Node newNode = new Node(this.sizeOfArrays );
 
                 // Перекидываем указатели
                 newNode.prev = current;
@@ -158,7 +158,7 @@ public class MyListOfArrays {
                 // #TODO: ПОМЕНЯТЬ getSizeArr на this.sizeOfArrays
                 // Перенос половины current в новый узел
                 current.setCountOfElementsInArray(this.sizeOfArrays / 2);
-                newNode.setCountOfElementsInArray(current.getSizeArr() - current.getCountOfElementsInArray());
+                newNode.setCountOfElementsInArray(this.sizeOfArrays - current.getCountOfElementsInArray());
                 int countElementsOfNewNode = newNode.getCountOfElementsInArray();
                 for (int i = 0; i < countElementsOfNewNode; i++) {
                     newNode.array[i] = current.array[this.sizeOfArrays / 2 + i];
@@ -244,14 +244,13 @@ public class MyListOfArrays {
 
     private class Node {
         Object[] array;
-        int sizeArr;
+
         int countOfElementsInArray;
         Node next;
         Node prev;
 
         public Node(int size) {
-            this.sizeArr = size;
-            this.array = new Object[this.sizeArr];
+            this.array = new Object[size];
             this.countOfElementsInArray = 0;
             this.next = this.prev = null;
         }
@@ -268,12 +267,6 @@ public class MyListOfArrays {
             this.countOfElementsInArray = countOfElementsInArray;
         }
 
-        public int getSizeArr() {
-            return sizeArr;
-        }
-        public void setSizeArr(int sizeArr) {
-            this.sizeArr = sizeArr;
-        }
     }
 
 }
