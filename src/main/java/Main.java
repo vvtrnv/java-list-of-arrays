@@ -11,7 +11,7 @@ public class Main {
         TestListOfArrays test = new TestListOfArrays();
         test.testingInteger();
         System.out.println("\n\n=============================================================\n\n");
-        test.testingPoint2D();
+        //test.testingPoint2D();
 
         GUI mainFrame = new GUI();
         mainFrame.showWindow();

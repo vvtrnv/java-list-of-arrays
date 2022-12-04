@@ -3,169 +3,180 @@
   <ID>JAVA</ID>
   <OriginalElement>/home/vladimir/Projects/java/java-list-of-arrays/src/main/java</OriginalElement>
   <nodes>
-    <node x="-52.123168052168296" y="56.329875765286715">realization.types.userTypes.Point2DUserType</node>
-    <node x="-65.87873122916676" y="-250.52834852596027">realization.types.comporators.Point2DComporator</node>
-    <node x="973.4013591848976" y="1337.462488026492">Main</node>
-    <node x="1130.9737809253518" y="788.5125456853127">test.TestList</node>
-    <node x="77.13999795883399" y="1077.1303289489142">realization.list.SerializeList</node>
-    <node x="1058.4870471105144" y="-205.08779103010488">realization.types.userTypes.IntegerUserType</node>
-    <node x="372.5342768645635" y="-186.80719056821113">realization.types.userTypes.UserType</node>
-    <node x="1388.9333652209637" y="-176.80155254361586">realization.types.IntegerType</node>
-    <node x="650.5119012890887" y="756.0497173209068">programUI.GUI</node>
-    <node x="372.5342768645635" y="-341.44425690170897">realization.types.comporators.Comporator</node>
-    <node x="880.7023462598854" y="-315.2567962116078">realization.types.comporators.IntegerComporator</node>
-    <node x="-327.65373717518287" y="361.6170360026485">realization.types.Point2DType</node>
-    <node x="299.56855372912696" y="196.01463327106046">realization.types.factory.FactoryUserType</node>
-    <node x="-302.5051919990726" y="687.0533853092054">realization.list.ListOfArrays.Node</node>
-    <node x="108.68283656676925" y="584.2578263505532">realization.list.ListOfArrays</node>
-    <node x="170.14995797493248" y="447.19163053724606">realization.list.Action</node>
+    <node x="-302.5478702956211" y="960.6074962518737">realization.list.Action</node>
+    <node x="642.6333838383825" y="156.87331334332833">realization.types.comporators.Point2DComporator</node>
+    <node x="-42.366616161617344" y="155.87331334332833">realization.types.IntegerType</node>
+    <node x="651.1333838383825" y="367.3733133433284">realization.types.userTypes.Point2DUserType</node>
+    <node x="124.63338383838266" y="169.37331334332833">realization.types.comporators.IntegerComporator</node>
+    <node x="7.216717171716027" y="633.3733133433284">realization.list.MyListOfArrays</node>
+    <node x="1108.6333838383825" y="93.37331334332833">realization.types.userTypes.UserType</node>
+    <node x="-303.27952220859356" y="1415.8733133433284">realization.list.SerializeList</node>
+    <node x="702.1334343434321" y="1415.8733133433284">test.TestListOfArrays</node>
+    <node x="1101.8833838383825" y="859.3733133433284">realization.types.factory.FactoryUserType</node>
+    <node x="251.52184537684445" y="367.3733133433284">realization.types.userTypes.IntegerUserType</node>
+    <node x="378.6750505050496" y="1303.3733133433284">programUI.GUI</node>
+    <node x="770.730915572516" y="1666.854932533733">Main</node>
+    <node x="376.77184537684445" y="-15.626686656671666">realization.types.comporators.Comporator</node>
+    <node x="-518.3666161616172" y="337.30560719640175">realization.list.MyListOfArrays.Node</node>
+    <node x="372.63338383838266" y="104.87331334332833">realization.types.Point2DType</node>
   </nodes>
   <notes />
   <edges>
-    <edge source="test.TestList" target="realization.types.factory.FactoryUserType" relationship="TO_ONE">
-      <point x="45.00021907464816" y="-179.49954568531268" />
-      <point x="1351.474" y="698.0" />
-      <point x="437.069" y="698.0" />
-      <point x="-14.999553729126944" y="42.500366728939525" />
-    </edge>
     <edge source="realization.types.factory.FactoryUserType" target="realization.types.userTypes.UserType" relationship="TO_MANY">
-      <point x="60.96572313543652" y="-42.5" />
-      <point x="0.0" y="105.0" />
-    </edge>
-    <edge source="realization.list.ListOfArrays" target="realization.list.ListOfArrays.Node" relationship="TO_ONE">
-      <point x="-151.82255943051058" y="-93.29593258611908" />
-      <point x="52.664166551283046" y="720.4618937644341" />
-      <point x="52.664166551283046" y="720.4618937644341" />
-      <point x="139.99479938937293" y="-51.98046551108064" />
+      <point x="-152.5003838383825" y="1.9990004943792883E-5" />
+      <point x="1018.0" y="902.3733333333332" />
+      <point x="1018.0" y="198.87333333333328" />
+      <point x="-140.5003838383825" y="1.9990004958003738E-5" />
     </edge>
     <edge source="realization.types.factory.FactoryUserType" target="realization.types.userTypes.IntegerUserType" relationship="CREATE">
-      <point x="152.5" y="0.0" />
-      <point x="1198.9870471105144" y="238.51463327106046" />
-      <point x="0.0" y="105.0" />
+      <point x="-152.5" y="-29.999980009995056" />
+      <point x="392.02184537684445" y="872.3733333333332" />
+      <point x="0.0" y="105.5" />
     </edge>
-    <edge source="test.TestList" target="realization.types.userTypes.UserType" relationship="TO_ONE">
-      <point x="158.29087286086542" y="-179.49996600863824" />
-      <point x="1464.7646537862172" y="59.0" />
-      <point x="613.0288683602773" y="59.0" />
-      <point x="99.99459149571385" y="103.54391112248362" />
+    <edge source="test.TestListOfArrays" target="realization.types.factory.FactoryUserType" relationship="CREATE">
+      <point x="29.999949494950442" y="-54.5" />
+      <point x="821.6333838383825" y="931.7566795802156" />
+      <point x="-159.22349745812312" y="29.38336623688724" />
     </edge>
-    <edge source="test.TestList" target="realization.list.ListOfArrays" relationship="CREATE">
-      <point x="30.0" y="-179.4999999999999" />
-      <point x="1336.4737809253518" y="670.6643991238809" />
-      <point x="151.5" y="-143.09342722667225" />
-    </edge>
-    <edge source="programUI.GUI" target="realization.list.ListOfArrays" relationship="TO_ONE">
-      <point x="-152.33376918747206" y="-127.754203233147" />
-      <point x="144.4629130868105" y="44.037687737206625" />
+    <edge source="programUI.GUI" target="realization.list.MyListOfArrays" relationship="TO_ONE">
+      <point x="-125.0" y="15.000019990005057" />
+      <point x="127.14542641024184" y="1485.3733333333334" />
+      <point x="-25.071290761474188" y="268.1961307346328" />
     </edge>
     <edge source="realization.types.userTypes.IntegerUserType" target="realization.types.comporators.IntegerComporator" relationship="CREATE">
-      <point x="-133.0" y="-105.0" />
-      <point x="71.28470085062895" y="29.5" />
+      <point x="-133.0" y="-105.5" />
+      <point x="20.388461538461797" y="29.5" />
     </edge>
     <edge source="realization.types.userTypes.Point2DUserType" target="realization.types.userTypes.UserType" relationship="REALIZATION">
-      <point x="0.0" y="-105.0" />
-      <point x="88.3768319478317" y="-81.807" />
-      <point x="-140.5" y="1.905682111242868E-4" />
-    </edge>
-    <edge source="realization.list.SerializeList" target="realization.list.ListOfArrays" relationship="CREATE">
-      <point x="-174.0" y="0.0" />
-      <point x="260.18283656676925" y="1131.6303289489142" />
-      <point x="0.0" y="229.5" />
+      <point x="140.5" y="-47.00000000000006" />
+      <point x="1264.133" y="425.87331334332833" />
+      <point x="14.999616161617496" y="105.5" />
     </edge>
     <edge source="realization.types.userTypes.IntegerUserType" target="realization.types.IntegerType" relationship="CREATE">
-      <point x="140.5" y="-21.713761513510974" />
-      <point x="-86.5" y="0.0" />
-    </edge>
-    <edge source="realization.list.ListOfArrays.Node" target="realization.list.ListOfArrays" relationship="INNER_CLASS">
-      <point x="149.0" y="56.31546707503844" />
-      <point x="-151.5" y="15.0" />
+      <point x="-14.999845376844405" y="-105.5" />
+      <point x="377.02200000000005" y="335.7333333333333" />
+      <point x="31.133383838382656" y="335.7333333333333" />
+      <point x="0.0" y="43.0" />
     </edge>
     <edge source="programUI.GUI" target="realization.types.factory.FactoryUserType" relationship="CREATE">
-      <point x="9.871091128843545E-5" y="-229.49971732090683" />
-      <point x="799.512" y="740.0" />
-      <point x="452.069" y="740.0" />
-      <point x="4.4627087305570967E-4" y="42.500366728939525" />
+      <point x="-15.0" y="167.0" />
+      <point x="488.6750505050496" y="1778.8733133433284" />
+      <point x="1356.3674234117416" y="1778.8733133433284" />
+      <point x="101.98403957335904" y="44.05805097451264" />
     </edge>
     <edge source="realization.types.comporators.IntegerComporator" target="realization.types.comporators.Comporator" relationship="REALIZATION">
-      <point x="-114.0" y="-26.187460690101148" />
-      <point x="491.0224805542731" y="-311.94425690170897" />
-      <point x="4.488203689709621" y="-3.4456885948268337" />
+      <point x="-3.83838382617796E-4" y="-29.499980009995042" />
+      <point x="238.63300000000004" y="74.73333333333329" />
+      <point x="490.77200000000005" y="74.73333333333329" />
+      <point x="1.546231555948907E-4" y="29.500019990004944" />
     </edge>
-    <edge source="test.TestList" target="realization.list.ListOfArrays" relationship="TO_ONE">
-      <point x="-78.64091004906527" y="-185.80284591625946" />
-      <point x="1227.8328708762865" y="723.5497173209068" />
-      <point x="151.5" y="-90.20810902964638" />
+    <edge source="realization.list.MyListOfArrays.Node" target="realization.list.MyListOfArrays" relationship="INNER_CLASS">
+      <point x="202.5" y="-0.0" />
+      <point x="167.21671717171603" y="443.80560719640175" />
+      <point x="15.0" y="-269.0" />
+    </edge>
+    <edge source="realization.list.MyListOfArrays" target="realization.list.MyListOfArrays.Node" relationship="TO_ONE">
+      <point x="0.0" y="-269.0" />
+      <point x="152.21671717171603" y="606.3733133433284" />
+      <point x="-192.67174436674566" y="606.3733133433284" />
+      <point x="123.19487179487157" y="106.5" />
     </edge>
     <edge source="Main" target="programUI.GUI" relationship="CREATE">
-      <point x="-79.99999999999989" y="0.0" />
-      <point x="799.5119012890887" y="1366.962488026492" />
-      <point x="0.0" y="229.5000000000001" />
+      <point x="0.0" y="-29.5" />
+      <point x="850.730915572516" y="1662.3733133433284" />
+      <point x="620.9250505050496" y="1662.3733133433284" />
+      <point x="117.25" y="167.0" />
     </edge>
-    <edge source="realization.list.ListOfArrays" target="realization.list.ListOfArrays.Node" relationship="CREATE">
-      <point x="-149.79138160141127" y="-34.391775542238975" />
-      <point x="50.91195365404337" y="779.3660508083142" />
-      <point x="50.91195365404337" y="779.3660508083142" />
-      <point x="150.15068853486946" y="6.923691532799467" />
+    <edge source="test.TestListOfArrays" target="realization.types.userTypes.UserType" relationship="TO_ONE">
+      <point x="89.49994949495044" y="1.999000505747972E-5" />
+      <point x="1018.0" y="1470.3733333333334" />
+      <point x="1018.0" y="198.87333333333328" />
+      <point x="-140.5003838383825" y="1.9990004958003738E-5" />
     </edge>
     <edge source="realization.types.userTypes.Point2DUserType" target="realization.types.comporators.Point2DComporator" relationship="CREATE">
-      <point x="-19.255563176998464" y="-105.0" />
-      <point x="0.0" y="42.0" />
+      <point x="14.999616161617496" y="-105.5" />
+      <point x="28.999616161617496" y="42.0" />
     </edge>
-    <edge source="programUI.GUI" target="realization.list.ListOfArrays" relationship="CREATE">
-      <point x="-149.0" y="0.0" />
-      <point x="151.5" y="171.79189097035362" />
+    <edge source="realization.list.MyListOfArrays" target="realization.list.MyListOfArrays.Node" relationship="CREATE">
+      <point x="-145.0" y="-0.0" />
+      <point x="-320.77952220859356" y="902.3733133433284" />
+      <point x="-4.912906046976332" y="106.5" />
+    </edge>
+    <edge source="programUI.GUI" target="realization.list.MyListOfArrays" relationship="CREATE">
+      <point x="14.999949494950329" y="-167.00031334332834" />
+      <point x="518.675" y="1261.0" />
+      <point x="186.675" y="1261.0" />
+      <point x="34.458282828283984" y="268.99968665667166" />
+    </edge>
+    <edge source="test.TestListOfArrays" target="realization.types.factory.FactoryUserType" relationship="TO_ONE">
+      <point x="89.5" y="15.000019990005057" />
+      <point x="1144.07057663513" y="1485.3733333333334" />
+      <point x="-110.31280720325253" y="50.623932833583126" />
     </edge>
     <edge source="programUI.GUI" target="realization.types.factory.FactoryUserType" relationship="TO_ONE">
-      <point x="-14.999901289088712" y="-229.49971732090683" />
-      <point x="784.512" y="698.0" />
-      <point x="437.069" y="698.0" />
-      <point x="-14.999553729126944" y="42.500366728939525" />
+      <point x="-0.0" y="167.0" />
+      <point x="503.6750505050496" y="1763.8733133433284" />
+      <point x="1269.383" y="1763.8733133433284" />
+      <point x="14.999616161617496" y="43.0" />
     </edge>
-    <edge source="test.TestList" target="realization.types.factory.FactoryUserType" relationship="CREATE">
-      <point x="2.190746481574024E-4" y="-179.49954568531268" />
-      <point x="1306.474" y="740.0" />
-      <point x="452.069" y="740.0" />
-      <point x="4.4627087305570967E-4" y="42.500366728939525" />
+    <edge source="test.TestListOfArrays" target="realization.list.MyListOfArrays" relationship="TO_ONE">
+      <point x="14.999949494950442" y="-54.49998000999494" />
+      <point x="806.6333838383825" y="1120.2333333333333" />
+      <point x="359.0" y="1120.2333333333333" />
+      <point x="359.0" y="887.3733333333333" />
+      <point x="145.00028282828396" y="-14.999980009995056" />
     </edge>
     <edge source="realization.types.comporators.Point2DComporator" target="realization.types.comporators.Comporator" relationship="REALIZATION">
-      <point x="0.0" y="-42.0" />
-      <point x="69.12126877083324" y="-311.94425690170897" />
-      <point x="-114.0" y="0.0" />
+      <point x="-3.838383825041092E-4" y="-41.99998000999504" />
+      <point x="777.633" y="74.73333333333329" />
+      <point x="490.77200000000005" y="74.73333333333329" />
+      <point x="1.546231555948907E-4" y="29.500019990004944" />
+    </edge>
+    <edge source="test.TestListOfArrays" target="realization.list.MyListOfArrays" relationship="CREATE">
+      <point x="-5.050504955761426E-5" y="-54.500313343328344" />
+      <point x="791.6333838383825" y="1261.0" />
+      <point x="186.675" y="1261.0" />
+      <point x="34.458282828283984" y="268.99968665667166" />
     </edge>
     <edge source="realization.types.factory.FactoryUserType" target="realization.types.userTypes.Point2DUserType" relationship="CREATE">
-      <point x="-152.5" y="0.0" />
-      <point x="140.5" y="77.18475750577375" />
-    </edge>
-    <edge source="realization.types.userTypes.IntegerUserType" target="realization.types.userTypes.UserType" relationship="REALIZATION">
-      <point x="-140.5" y="0.0" />
-      <point x="856.0106619875389" y="-100.08779103010488" />
-      <point x="856.0106619875389" y="-81.80719056821113" />
+      <point x="-5.250383838382504" y="-43.0" />
+      <point x="1249.133" y="472.87331334332833" />
       <point x="140.5" y="0.0" />
     </edge>
+    <edge source="Main" target="test.TestListOfArrays" relationship="CREATE">
+      <point x="35.249999999999886" y="-29.5" />
+      <point x="885.9809155725159" y="1606.1233133433284" />
+      <point x="709.6334343434321" y="1606.1233133433284" />
+      <point x="-82.0" y="54.5" />
+    </edge>
+    <edge source="realization.types.userTypes.IntegerUserType" target="realization.types.userTypes.UserType" relationship="REALIZATION">
+      <point x="1.546231555948907E-4" y="-105.49998000999506" />
+      <point x="392.02200000000005" y="335.7333333333333" />
+      <point x="1249.133" y="335.7333333333333" />
+      <point x="-3.838383825041092E-4" y="105.50001999000494" />
+    </edge>
     <edge source="programUI.GUI" target="realization.types.userTypes.UserType" relationship="TO_ONE">
-      <point x="-149.0" y="218.08061162800743" />
-      <point x="736.3887623094694" y="1203.6303289489142" />
-      <point x="736.3887623094694" y="1278.3776730597685" />
-      <point x="-389.0271782837279" y="1278.3776730597685" />
-      <point x="-389.0271782837279" y="-96.807" />
-      <point x="-140.5" y="-14.999809431788876" />
+      <point x="124.99994949495033" y="72.00001999000506" />
+      <point x="1018.0" y="1542.3733333333334" />
+      <point x="1018.0" y="198.87333333333328" />
+      <point x="-140.5003838383825" y="1.9990004958003738E-5" />
     </edge>
     <edge source="realization.types.userTypes.Point2DUserType" target="realization.types.Point2DType" relationship="CREATE">
       <point x="-140.5" y="0.0" />
-      <point x="-202.65373717518287" y="161.32987576528672" />
-      <point x="0.0" y="-67.5" />
+      <point x="550.0218453768445" y="472.87331334332833" />
+      <point x="52.3884615384618" y="94.0" />
     </edge>
-    <edge source="Main" target="test.TestList" relationship="CREATE">
-      <point x="80.0" y="0.0" />
-      <point x="1306.4737809253518" y="1366.962488026492" />
-      <point x="0.0" y="179.5" />
+    <edge source="realization.list.SerializeList" target="realization.list.MyListOfArrays" relationship="CREATE">
+      <point x="171.0" y="-54.5" />
+      <point x="46.22047779140644" y="1293.6233133433284" />
+      <point x="47.26053045821783" y="1293.6233133433284" />
+      <point x="-104.9561867134982" y="270.3847580209897" />
     </edge>
   </edges>
-  <settings layout="Hierarchic" zoom="0.4923251847640705" showDependencies="true" x="546.0000000000002" y="527.5" />
-  <SelectedNodes>
-    <node>realization.types.factory.FactoryUserType</node>
-  </SelectedNodes>
+  <settings layout="Hierarchic" zoom="0.37300275482093664" showDependencies="true" x="444.0000000000001" y="881.5" />
+  <SelectedNodes />
   <Categories>
+    <Category>Fields</Category>
     <Category>Inner Classes</Category>
     <Category>Methods</Category>
     <Category>Properties</Category>

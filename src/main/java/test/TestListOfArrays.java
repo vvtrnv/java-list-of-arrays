@@ -19,11 +19,12 @@ public class TestListOfArrays {
 
     private void startTest() {
         System.out.println("### FILL LIST (ADD METHOD)");
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 120; i++) {
             list.add(userType.create());
         }
         System.out.println("### PRINT LIST");
         list.show();
+        System.out.println("TOTAL ELEMENTS = " + list.getTotalElements());
 
         System.out.println("\n### INSERT ELEMENT");
         System.out.println("ELEMENT ON 77 INDEX BEFORE INSERT: " + list.get(77));
@@ -99,7 +100,7 @@ public class TestListOfArrays {
         System.out.println("#### TEST USER TYPE INTEGER\n");
         factoryUserType = new FactoryUserType();
         userType = factoryUserType.getBuilderByTypeName("Integer");
-        list = new MyListOfArrays(25);
+        list = new MyListOfArrays(100);
         startTest();
 
         return 1;
@@ -109,7 +110,7 @@ public class TestListOfArrays {
         System.out.println("#### TEST USER TYPE POINT2D\n");
         factoryUserType = new FactoryUserType();
         userType = factoryUserType.getBuilderByTypeName("Point2D");
-        list = new MyListOfArrays(25);
+        list = new MyListOfArrays(100);
         startTest();
 
         return 1;

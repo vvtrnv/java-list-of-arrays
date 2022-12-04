@@ -310,8 +310,9 @@ public class MyListOfArrays {
         left.sortArray(comporator);
         right.sortArray(comporator);
 
+        // Ставим обратно все указатели
         while (left != null && right != null) {
-            if (comporator.compare(left.array[0], right.array[0]) < 0) {
+            if (left.getCountOfElementsInArray() > right.getCountOfElementsInArray()) {
                 temp.next = left;
                 left.prev = temp;
                 left = left.next;
@@ -355,7 +356,6 @@ public class MyListOfArrays {
         this.totalElements = 0;
         this.head = this.tail = null;
     }
-
 
 
     public void show() {
