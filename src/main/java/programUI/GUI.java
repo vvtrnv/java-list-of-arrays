@@ -1,6 +1,6 @@
 package programUI;
 
-import realization.list.ListOfArrays;
+import realization.list.MyListOfArrays;
 import realization.list.SerializeList;
 import realization.types.factory.FactoryUserType;
 import realization.types.userTypes.UserType;
@@ -8,9 +8,7 @@ import realization.types.userTypes.UserType;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Set;
+import java.util.Objects;
 import javax.swing.*;
 
 public class GUI extends JPanel {
@@ -24,41 +22,22 @@ public class GUI extends JPanel {
     private JButton sortListBySizeButton;
     private JButton getByIdButton;
     private JTextField getByIdField;
-    private JButton pushbackOnArrayButton;
-    private JButton insertOnArrayButton;
-    private JButton sortArrayButton;
-    private JButton removeFromArrayButton;
-    private JTextField pushbackOnArrayField;
-    private JLabel pushbackOnArrayText;
-    private JTextField insertNodeIDArrayField;
-    private JTextField insertIndexOnArrayField;
-    private JLabel insertOnArrayNodeidText;
-    private JLabel insertOnArrayIndexText;
-    private JTextField removeFromArrayNodeIdField;
-    private JTextField removeFromArrayIndexField;
-    private JLabel removeFromArrayNodeIdText;
-    private JLabel removeFromArrayIndexText;
-    private JLabel sortArrayNodeIdText;
-    private JTextField sortArrayNodeIdField;
     private JButton saveButton;
     private JButton loadButton;
+    private JLabel totalElementsLabel;
 
     String currentType;
+    String totalElements = "TOTAL ELEMENTS = 0";
     public UserType userType;
-    public ListOfArrays list;
+    public MyListOfArrays list;
     public FactoryUserType factoryUserType;
 
     public GUI() {
         currentType = "Integer";
         factoryUserType = new FactoryUserType();
         userType = factoryUserType.getBuilderByTypeName(currentType);
-        list = new ListOfArrays();
+        list = new MyListOfArrays(64);
 
-        Set<String> typenameList = factoryUserType.getTypeNameList();
-
-
-        //construct preComponents
-        String[] typeComboBoxItems = {"Integer", "Point"};
 
         //construct components
         addButton = new JButton ("Вставить");
@@ -68,25 +47,11 @@ public class GUI extends JPanel {
         typeComboBox = new JComboBox<>(factoryUserType.getTypeNameList().toArray(new String[0]));
         insertByIdField = new JTextField (5);
         removeByIdField = new JTextField (5);
-        sortListBySizeButton = new JButton ("Сортировать по размеру");
+        sortListBySizeButton = new JButton ("Сортировать");
         getByIdButton = new JButton ("Получить по id");
         getByIdField = new JTextField (5);
-        pushbackOnArrayButton = new JButton ("Вставить в конец массива");
-        insertOnArrayButton = new JButton ("Вставить в массив ");
-        sortArrayButton = new JButton ("Сортировка массива");
-        removeFromArrayButton = new JButton ("Удалить в массиве");
-        pushbackOnArrayField = new JTextField (5);
-        pushbackOnArrayText = new JLabel ("ID узла");
-        insertNodeIDArrayField = new JTextField (5);
-        insertIndexOnArrayField = new JTextField (5);
-        insertOnArrayNodeidText = new JLabel ("ID");
-        insertOnArrayIndexText = new JLabel ("Индекс в массиве");
-        removeFromArrayNodeIdField = new JTextField (5);
-        removeFromArrayIndexField = new JTextField (5);
-        removeFromArrayNodeIdText = new JLabel ("ID");
-        removeFromArrayIndexText = new JLabel ("Индекс в массиве");
-        sortArrayNodeIdText = new JLabel ("ID узла");
-        sortArrayNodeIdField = new JTextField (5);
+        totalElementsLabel = new JLabel(totalElements);
+
         saveButton = new JButton ("Сохранить");
         loadButton = new JButton ("Загрузить");
 
@@ -105,27 +70,13 @@ public class GUI extends JPanel {
         add (sortListBySizeButton);
         add (getByIdButton);
         add (getByIdField);
-        add (pushbackOnArrayButton);
-        add (insertOnArrayButton);
-        add (sortArrayButton);
-        add (removeFromArrayButton);
-        add (pushbackOnArrayField);
-        add (pushbackOnArrayText);
-        add (insertNodeIDArrayField);
-        add (insertIndexOnArrayField);
-        add (insertOnArrayNodeidText);
-        add (insertOnArrayIndexText);
-        add (removeFromArrayNodeIdField);
-        add (removeFromArrayIndexField);
-        add (removeFromArrayNodeIdText);
-        add (removeFromArrayIndexText);
-        add (sortArrayNodeIdText);
-        add (sortArrayNodeIdField);
+        add (totalElementsLabel);
+
         add (saveButton);
         add (loadButton);
 
         //set component bounds
-        typeComboBox.setBounds (600, 15, 180, 30);
+        typeComboBox.setBounds (650, 15, 180, 30);
 
         // Work with nodes
         addButton.setBounds (800, 70, 140, 30);
@@ -141,37 +92,17 @@ public class GUI extends JPanel {
 
         sortListBySizeButton.setBounds (650, 250, 290, 30);
 
+        totalElementsLabel.setBounds(650, 350, 290, 30);
 
-        // Work with arrays on nodes
-        pushbackOnArrayButton.setBounds (740, 350, 250, 30);
-        pushbackOnArrayField.setBounds (660, 350, 60, 30);
-        pushbackOnArrayText.setBounds (660, 320, 100, 25);
-
-        insertOnArrayButton.setBounds (740, 415, 250, 30);
-        insertNodeIDArrayField.setBounds (550, 415, 60, 30);
-        insertIndexOnArrayField.setBounds (660, 415, 60, 30);
-        insertOnArrayNodeidText.setBounds (570, 390, 20, 25);
-        insertOnArrayIndexText.setBounds (630, 390, 130, 25);
-
-        removeFromArrayButton.setBounds (740, 480, 250, 30);
-        removeFromArrayNodeIdField.setBounds (550, 480, 60, 30);
-        removeFromArrayIndexField.setBounds (660, 480, 60, 30);
-        removeFromArrayNodeIdText.setBounds (570, 455, 20, 25);
-        removeFromArrayIndexText.setBounds (630, 455, 130, 25);
-
-        sortArrayButton.setBounds (740, 540, 250, 30);
-        sortArrayNodeIdField.setBounds (660, 540, 60, 30);
-        sortArrayNodeIdText.setBounds (650, 515, 130, 25);
+        // Serialization
+        saveButton.setBounds (650, 610, 145, 70);
+        loadButton.setBounds (850, 610, 140, 70);
 
         // Main field
-        mainField.setBounds (25, 10, 500, 680);
+        mainField.setBounds (25, 10, 600, 680);
         mainField.setEditable(false);
         mainField.setLineWrap(true);
         mainField.setWrapStyleWord(true);
-
-        // Serialization
-        saveButton.setBounds (550, 610, 145, 70);
-        loadButton.setBounds (720, 610, 140, 70);
 
         // set action
         setActions();
@@ -184,11 +115,6 @@ public class GUI extends JPanel {
         removeByIdButton.addActionListener(e -> removeNodeByID());
         getByIdButton.addActionListener(e -> getNodeByID());
         sortListBySizeButton.addActionListener(e -> sortListBySizeArray());
-
-        pushbackOnArrayButton.addActionListener(e -> pushElementOnArray());
-        insertOnArrayButton.addActionListener(e -> insertElementOnArray());
-        removeFromArrayButton.addActionListener(e -> removeElementFromArray());
-        sortArrayButton.addActionListener(e -> sortArrayByNodeID());
 
         saveButton.addActionListener(e -> saveList());
         loadButton.addActionListener(e -> loadList());
@@ -204,37 +130,21 @@ public class GUI extends JPanel {
         frame.setResizable(false);
     }
 
-    private ArrayList createRandomArrayBySize(final int SIZE) {
-
-        ArrayList arrayToAdd = new ArrayList<>();
-        for(int i = 0; i < SIZE; i++) {
-            arrayToAdd.add(userType.create());
-        }
-
-        return arrayToAdd;
-    }
-    private ArrayList createRandomArray() {
-        Random random = new Random();
-        int sizeArray = random.nextInt(8) + 1;
-
-        return createRandomArrayBySize(sizeArray);
-    }
-
     private void selectTypeList(ActionEvent actionEvent) {
         JComboBox comboBox = (JComboBox) actionEvent.getSource();
         String item = (String) comboBox.getSelectedItem();
 
-        if (currentType != item) {
+        if (!Objects.equals(currentType, item)) {
             currentType = item;
             userType = factoryUserType.getBuilderByTypeName(currentType);
-            list = new ListOfArrays();
+            list = new MyListOfArrays(64);
             setTextOnMainField();
         }
     }
 
     private void pushNode() {
-        ArrayList arrayToAdd = createRandomArray();
-        list.push_back(arrayToAdd);
+        list.add(userType.create());
+        updateTotalElementsLabel();
         setTextOnMainField();
     }
 
@@ -245,7 +155,8 @@ public class GUI extends JPanel {
             return;
         }
 
-        list.insert(Integer.parseInt(nodeID), createRandomArray());
+        list.insert(userType.create(), Integer.parseInt(nodeID));
+        updateTotalElementsLabel();
         setTextOnMainField();
     }
 
@@ -257,11 +168,13 @@ public class GUI extends JPanel {
         }
 
         list.remove(Integer.parseInt(nodeID));
+        updateTotalElementsLabel();
         setTextOnMainField();
     }
 
     private void sortListBySizeArray() {
-        list.sort_bySizeArray();
+        list.sort(userType.getTypeComparator());
+        updateTotalElementsLabel();
         setTextOnMainField();
     }
 
@@ -275,60 +188,7 @@ public class GUI extends JPanel {
                 list.get(Integer.parseInt(nodeID)));
     }
 
-    private void pushElementOnArray() {
-        String nodeID = pushbackOnArrayField.getText();
-        if (nodeID.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ошибка. Поле \"id\" пусто!");
-            return;
-        }
 
-        list.push_back_byIndexNode(Integer.parseInt(nodeID), userType.create());
-        setTextOnMainField();
-    }
-
-    private void insertElementOnArray() {
-        String nodeID = insertNodeIDArrayField.getText();
-        String indexOnArray = insertIndexOnArrayField.getText();
-
-        if (nodeID.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ошибка. Поле \"id\" пусто!");
-            return;
-        } else if(indexOnArray.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ошибка. Поле \"Индекс в массиве\" пусто!");
-            return;
-        }
-
-        list.insert_byIndexNode(Integer.parseInt(nodeID), Integer.parseInt(indexOnArray), userType.create());
-        setTextOnMainField();
-    }
-
-    private void removeElementFromArray() {
-        String nodeID = removeFromArrayNodeIdField.getText();
-        String indexOnArray = removeFromArrayIndexField.getText();
-
-        if (nodeID.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ошибка. Поле \"id\" пусто!");
-            return;
-        } else if(indexOnArray.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ошибка. Поле \"Индекс в массиве\" пусто!");
-            return;
-        }
-
-        list.remove_byIndexNode(Integer.parseInt(nodeID), Integer.parseInt(indexOnArray));
-        setTextOnMainField();
-    }
-
-    private void sortArrayByNodeID() {
-        String nodeID = sortArrayNodeIdField.getText();
-
-        if (nodeID.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Ошибка. Поле \"id\" пусто!");
-            return;
-        }
-
-        list.sortArray(Integer.parseInt(nodeID), userType.getTypeComparator());
-        setTextOnMainField();
-    }
 
     private void saveList() {
         String filename = userType.typeName() + ".dat";
@@ -341,6 +201,7 @@ public class GUI extends JPanel {
             String filename = userType.typeName() + ".dat";
             this.list = SerializeList.loadFromFile(filename, userType);
             JOptionPane.showMessageDialog(null, "Список успешно загружен!");
+            updateTotalElementsLabel();
             setTextOnMainField();
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Ошибка. Файл не найден!");
@@ -350,6 +211,10 @@ public class GUI extends JPanel {
         }
     }
 
+    public void updateTotalElementsLabel() {
+        totalElements = "TOTAL ELEMENTS = " + list.getTotalElements();
+        totalElementsLabel.setText(totalElements);
+    }
     private void setTextOnMainField() {
         mainField.setText(list.toString());
     }

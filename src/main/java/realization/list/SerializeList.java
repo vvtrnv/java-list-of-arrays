@@ -14,47 +14,50 @@ import javax.xml.transform.sax.SAXTransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class SerializeList {
 
-    private static ArrayList parseString(ArrayList list, String s, UserType userType) {
+    private static void parseString(MyListOfArrays list, String s, UserType userType) {
         s = s.replace("[", "");
         s = s.replace("]", "");
         String[] arrayFromString = s.split(", ");
 
-        ArrayList arrayToAddInList = new ArrayList();
-
         for (int i = 0; i < arrayFromString.length; i++) {
-            arrayToAddInList.add(userType.parseValue(arrayFromString[i]));
+            if (!Objects.equals(arrayFromString[i], "null")) {
+                list.add(userType.parseValue(arrayFromString[i]));
+            }
         }
-        return arrayToAddInList;
     }
 
-    public static void saveToFile(ListOfArrays list, String filename, UserType userType) {
+    public static void saveToFile(MyListOfArrays list, String filename, UserType userType) {
         try (PrintWriter writer = new PrintWriter(filename)) {
             writer.println(userType.typeName());
-            list.forEach(el -> writer.println(el.toString()));
+            writer.println(list.getSizeOfArrays());
+            list.forEach(el -> writer.println(Arrays.toString((Object[])el)));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static ListOfArrays loadFromFile(String filename, UserType userType) throws Exception {
+    public static MyListOfArrays loadFromFile(String filename, UserType userType) throws Exception {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filename))) {
             String line;
-
-            ListOfArrays list = new ListOfArrays();
+            int sizeOfArrays = 0;
 
             line = bufferedReader.readLine();
             if (!userType.typeName().equals(line)) {
                 throw new Exception("Wrong file structure");
             }
+            line = bufferedReader.readLine();
+            sizeOfArrays = Integer.parseInt(line);
+
+            MyListOfArrays list = new MyListOfArrays((int)Math.pow(sizeOfArrays, 2));
 
             while ((line = bufferedReader.readLine()) != null) {
-                ArrayList<IntegerType> arr = null;
-                arr = parseString(arr, line, userType);
-                list.push_back(arr);
-                //System.out.println(arr.toString());
+                parseString(list, line, userType);
+
             }
             return list;
         } catch (FileNotFoundException e) {

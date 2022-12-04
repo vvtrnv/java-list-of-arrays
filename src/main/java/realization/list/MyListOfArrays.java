@@ -1,17 +1,20 @@
 package realization.list;
 
+import realization.types.comporators.Comporator;
+
 import java.security.KeyPair;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 import static java.lang.Math.log;
 import static java.lang.Math.sqrt;
 
 public class MyListOfArrays {
-    private int sizeOfArrays; // размерность каждого массива SIZE0
-    private int size; // Размер списка SIZEP
-    //private int cidx; // Текущее кол-во массивов CIDX
-    private int totalElements; // Количество элементов во всех массивах TOTAL
+    private int sizeOfArrays; // размерность каждого массива
+    private int size; // Размер списка
+    private int totalElements; // Количество элементов во всех массивах
 
     private Node head;
     private Node tail;
@@ -116,8 +119,10 @@ public class MyListOfArrays {
             if (index < 0 || index >= this.size) {
                 throw new IndexOutOfBoundsException();
             }
-
-            Node tmp = head;
+            if (index == 0) {
+                return this.head;
+            }
+            Node tmp = this.head;
             for (int i = 0; i < index; i++) {
                 tmp = tmp.next;
             }
@@ -171,7 +176,6 @@ public class MyListOfArrays {
                 }
                 current.next = newNode;
 
-                // #TODO: ПОМЕНЯТЬ getSizeArr на this.sizeOfArrays
                 // Перенос половины current в новый узел
                 current.setCountOfElementsInArray(this.sizeOfArrays / 2);
                 newNode.setCountOfElementsInArray(this.sizeOfArrays - current.getCountOfElementsInArray());
@@ -206,11 +210,12 @@ public class MyListOfArrays {
                 current.array[i] = current.array[i + 1];
             }
 
-            current.setCountOfElementsInArray(current.getCountOfElementsInArray() - 1);
             this.totalElements--;
+            current.setCountOfElementsInArray(current.getCountOfElementsInArray() - 1);
 
             // Если массив оказался пустым, то удалим узел перекинув указатели
             if (current.getCountOfElementsInArray() == 0) {
+
                 if (current.prev != null) {
                     if (current.next != null) {
                         current.prev.next = current.next;
@@ -228,7 +233,10 @@ public class MyListOfArrays {
                     }
                 }
 
-                current.array = null;
+                if (this.size != 1) {
+                    this.size--;
+                }
+
             }
 
             return 1;
@@ -238,6 +246,117 @@ public class MyListOfArrays {
 
         return 0;
     }
+
+    public void sort(Comporator comporator) {
+        head = mergeSort(head, comporator);
+    }
+
+    /**
+     * Основная функция сортировки слиянием. Разбивает исходный список на подсписки,
+     * после чего сливает их в один.
+     * @param currentElement
+     * @return
+     */
+    private Node mergeSort(Node currentElement, Comporator comporator) {
+        if (currentElement == null || currentElement.next == null) {
+            return currentElement;
+        }
+
+        Node middle = getMiddle(currentElement);
+        Node middleNext = middle.next;
+
+        middle.next = null;
+
+        Node left = mergeSort(currentElement, comporator);
+
+        Node right = mergeSort(middleNext, comporator);
+
+        return merge(left, right, comporator);
+    }
+
+    /**
+     * Вспомогательный метод для поиска серединного элемента
+     * @param currentElement
+     * @return
+     */
+    private Node getMiddle(Node currentElement) {
+        if (currentElement == null)
+            return null;
+
+        Node nextElement = currentElement.next;
+        Node thisCurElem = currentElement;
+
+        while (nextElement != null) {
+            nextElement = nextElement.next;
+            if (nextElement != null) {
+                thisCurElem = thisCurElem.next;
+                nextElement = nextElement.next;
+            }
+        }
+        return thisCurElem;
+    }
+
+    /**
+     * Вспомогательный метод объеденения подсписков в ходе сортировки слиянием
+     * @param left
+     * @param right
+     * @return
+     */
+    private Node merge(Node left, Node right, Comporator comporator) {
+        Node merged = new Node(this.sizeOfArrays);
+        Node temp = merged;
+
+        // Отсортируем массив левого и правого узлов
+        left.sortArray(comporator);
+        right.sortArray(comporator);
+
+        while (left != null && right != null) {
+            if (comporator.compare(left.array[0], right.array[0]) < 0) {
+                temp.next = left;
+                left.prev = temp;
+                left = left.next;
+            } else {
+                temp.next = right;
+                right.prev = temp;
+                right = right.next;
+            }
+            temp = temp.next;
+        }
+
+        // Если размеры подсписков были разными, добавляем оставшиеся элементы
+        while (left != null) {
+            temp.next = left;
+            left.prev = temp;
+            left = left.next;
+            temp = temp.next;
+        }
+        while (right != null) {
+            temp.next = right;
+            right.prev = temp;
+            right = right.next;
+            temp = temp.next;
+            this.tail = temp;
+        }
+
+        return merged.next;
+    }
+
+    public void forEach(Action<Object> a) {
+        Node tmp = this.head;
+
+        while (tmp != null) {
+            a.toDo(tmp.array);
+            tmp = tmp.next;
+        }
+    }
+
+    public void clear() {
+        this.size = 0;
+        this.totalElements = 0;
+        this.head = this.tail = null;
+    }
+
+
 
     public void show() {
         Node tmp = this.head;
@@ -253,9 +372,35 @@ public class MyListOfArrays {
     public int getSize() {
         return size;
     }
-
     public int getTotalElements() {
         return totalElements;
+    }
+    public int getSizeOfArrays() {
+        return this.sizeOfArrays;
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        String elements = "";
+        int indexNode = 0;
+
+        Node tmp = head;
+        while (tmp != null) {
+            for (int j = 0; j < tmp.getCountOfElementsInArray(); j++) {
+                if (tmp.array[j] != null) {
+                    elements += tmp.array[j].toString() + " ";
+                }
+            }
+
+            str += indexNode + ": " + "[" + elements + "]\n";
+            tmp = tmp.next;
+            indexNode++;
+            elements = "";
+        }
+
+
+        return str;
     }
 
     private class Node {
@@ -281,6 +426,81 @@ public class MyListOfArrays {
         }
         public void setCountOfElementsInArray(int countOfElementsInArray) {
             this.countOfElementsInArray = countOfElementsInArray;
+        }
+
+        public void sortArray(Comporator comporator) {
+            mergeSortArray(this.array, comporator, this.countOfElementsInArray);
+        }
+
+        /**
+         * Разбиение массива на части
+         * @param arr
+         * @param comporator
+         */
+        private void mergeSortArray(Object[] arr, Comporator comporator, int countElem) {
+            int arrSize = countElem;
+            if (arrSize == 1) {
+                return;
+            }
+
+            int middle = arrSize / 2;
+
+            Object[] left = new Object[middle];
+            Object[] right = new Object[arrSize - middle];
+
+            for (int i = 0; i < middle; i++) {
+                left[i] = arr[i];
+            }
+            for (int i = 0; i < arrSize - middle; i++) {
+                right[i] = arr[middle + i];
+            }
+
+            mergeSortArray(left, comporator, left.length);
+            mergeSortArray(right, comporator, right.length);
+            mergeArrays(arr, left, right, comporator);
+        }
+
+        /**
+         * Слияние подмассивов
+         * @param arr результирующий массив
+         * @param leftArr первый подмассив
+         * @param rightArr второй подмассив
+         * @param comporator объект для сравнения значений пользовательских типов данных
+         */
+        private void mergeArrays(Object[] arr, Object[] leftArr, Object[] rightArr, Comporator comporator) {
+            int leftSize = leftArr.length;
+            int rightSize = rightArr.length;
+
+            int i = 0;
+            int j = 0;
+            int idx = 0;
+
+            while (i < leftSize && j < rightSize) {
+                if (comporator.compare(leftArr[i], rightArr[j]) < 0) {
+                    arr[idx] = leftArr[i];
+                    i++;
+                } else {
+                    arr[idx] = rightArr[j];
+                    j++;
+                }
+
+                idx++;
+            }
+
+            // Если размеры массивов были разными,
+            // то добавляем в результирующий массив остатки
+            for (int ll = i; ll < leftSize; ll++) {
+                arr[idx++] = leftArr[ll];
+            }
+            for (int rr = j; rr < rightSize; rr++) {
+                arr[idx++] = rightArr[rr];
+            }
+
+        }
+
+        @Override
+        public String toString() {
+            return Arrays.toString(array);
         }
 
     }
