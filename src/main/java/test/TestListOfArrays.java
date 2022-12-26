@@ -61,7 +61,7 @@ public class TestListOfArrays {
         }
 
         System.out.println("\n### SORT LIST");
-        list.sort(userType.getTypeComparator());
+        list = list.sort(userType.getTypeComparator());
         System.out.println("### PRINT LIST");
         list.show();
         System.out.println("TOTAL ELEMENTS = " + list.getTotalElements());

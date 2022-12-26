@@ -173,7 +173,7 @@ public class GUI extends JPanel {
     }
 
     private void sortListBySizeArray() {
-        list.sort(userType.getTypeComparator());
+        list = list.sort(userType.getTypeComparator());
         updateTotalElementsLabel();
         setTextOnMainField();
     }
