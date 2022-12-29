@@ -41,8 +41,12 @@ public class FactoryUserType {
      * Получить список типов данных
      * @return
      */
-    public Set<String> getTypeNameList() {
-        return listOfAvailableTypes.stream().map(UserType::typeName).collect(Collectors.toSet());
+    public ArrayList<String> getTypeNameList() {
+        ArrayList<String> typeNameListString = new ArrayList<>();
+        for (UserType userType : listOfAvailableTypes) {
+            typeNameListString.add(userType.typeName());
+        }
+        return typeNameListString;
     }
 
 

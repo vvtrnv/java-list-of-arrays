@@ -121,7 +121,7 @@ public class GUI extends JPanel {
     }
 
     public void showWindow() {
-        JFrame frame = new JFrame ("Lab1 Java");
+        JFrame frame = new JFrame ("Lab3 Kotlin");
 
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add (new GUI());
@@ -187,7 +187,6 @@ public class GUI extends JPanel {
         JOptionPane.showMessageDialog(null, "Найденый узел:\n" +
                 list.get(Integer.parseInt(nodeID)));
     }
-
 
 
     private void saveList() {
