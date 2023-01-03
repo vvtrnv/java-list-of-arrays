@@ -121,7 +121,7 @@ public class GUI extends JPanel {
     }
 
     public void showWindow() {
-        JFrame frame = new JFrame ("Lab3 Kotlin");
+        JFrame frame = new JFrame ("Lab1 Java");
 
         frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add (new GUI());
